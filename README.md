@@ -1,4 +1,8 @@
 # twitter-django-react
+## 始め方
+場所 デフォルト  
+ `.env_django/Scripts/activate`
+
 ## python仮想環境
  - Windows
  `python -m venv env_django`
