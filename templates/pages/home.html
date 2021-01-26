@@ -5,19 +5,34 @@ Amazing
 {% endblock head_title %}
 
 {% block content %}
-Hello from home.html
+Welcome to Tweetme 2
+<div id='tweets'>
+    Replace me
+</div>
 <script>
+const tweetsElement = document.getElementById("tweets")
+tweetsElement.innerHTML = "Loading..."
+
 const xhr = new XMLHttpRequest() //
 const method = 'GET'
 const url = "/tweets"
 const responseType = "json"
 
-xhr.responseTyep = responseType
+xhr.responseType = responseType
 xhr.open(method, url)
 xhr.onload = function() {
     const serverResponse = xhr.response
-    var listedItems = serverResponse
-    console.log(listedItems)
+    console.log(serverResponse.isUser)
+    const listedItems = serverResponse.response // array
+    var finalTweetStr = ""
+    var i;
+    for (i=0;i<listedItems.length; i++) {
+        //console.log(i)
+        //console.log(listedItems[i])
+        var currentItem = "<div class='mb-4'><h1>" + listedItems[i].id + "</h1>" + "<p>" + listedItems[i].content + "</p></div>"
+            finalTweetStr += currentItem
+    }
+    tweetsElement.innerHTML = finalTweetStr
 }
 xhr.send()
 
