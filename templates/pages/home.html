@@ -7,19 +7,29 @@ Amazing
 {% block content %}
 Welcome to Tweetme 2
 <div id='tweets'>
-    Replace me
+    Loading...
 </div>
 <script>
 const tweetsElement = document.getElementById("tweets")
-tweetsElement.innerHTML = "Loading..."
 
 const xhr = new XMLHttpRequest() //
 const method = 'GET'
 const url = "/tweets"
 const responseType = "json"
 
+function handleDidLike (tweet_id, currentCount) {
+    console.log(tweet_id, currentCount)
+    currentCount++
+    return
+}
+function LikeBtn(tweet) {
+    return "<button class='btn btn-primary' onclick=handleDidLike(" + tweet.id + "," + tweet.likes + ")>" + tweet.likes + "Like</button>"
+}
 function formatTweetElement(tweet) {
-    var formattedTweet = "<div class='mb-4 tweet' id='tweet-" + tweet.id + "'><p>" + tweet.content + "</p></div>"
+    var formattedTweet = "<div class='mb-4 tweet' id='tweet-" + tweet.id
+    + "'><p>" + tweet.content + 
+        "</p><div class='btn-group'>" + LikeBtn(tweet) +
+        "</div></div>"
     return formattedTweet
 }
 xhr.responseType = responseType
