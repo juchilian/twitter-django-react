@@ -26,7 +26,7 @@ SECRET_KEY = '93im@*69smovm_341$himjqv-^*o8a=&1_d$2hzqc_6wl=z570'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.r-english.com']
 
 
 # Application definition
