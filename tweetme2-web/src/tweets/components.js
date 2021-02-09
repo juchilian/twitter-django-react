@@ -3,35 +3,38 @@ import React, {useEffect, useState}  from 'react'
 import {createTweet, loadTweets} from '../lookup'
 
 export function TweetsComponent(props) {
-    const textAreaRef = React.createRef()
-    const [newTweets, setNewTweets] = useState([])
-    const handleSubmit = (event) => {
-      event.preventDefault()
-      const newVal = textAreaRef.current.value
-      let tempNewTweets = [...newTweets]
-      // change this to a server side call
-      createTweet(newVal, (response, status) => {
-        if (status === 201) {
-          tempNewTweets.unshift(response)
-        } else {
-          console.log(response);
-          alert("An error occured please try again")
-        }
-      })
-      setNewTweets(tempNewTweets)
-      textAreaRef.current.value = ''
+  const textAreaRef = React.createRef()
+  const [newTweets, setNewTweets] = useState([])
+  
+  const handleBackendUpdate = (response, status) => {
+    // babckend api response handler
+    let tempNewTweets = [...newTweets];
+    if (status === 201) {
+      tempNewTweets.unshift(response);
+      setNewTweets(tempNewTweets);
+    } else {
+      console.log(response);
+      alert("An error occured please try again");
     }
-    return <div className={props.className}>
-            <div className='col-12 mb-3'>
-              <form onSubmit={handleSubmit}>
-                <textarea ref={textAreaRef} required={true} className='form-control' name='tweet'>
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    // backend api request
+    const newVal = textAreaRef.current.value
+    createTweet(newVal, handleBackendUpdate)
+    textAreaRef.current.value = ''
+  }
+  return <div className={props.className}>
+          <div className='col-12 mb-3'>
+            <form onSubmit={handleSubmit}>
+              <textarea ref={textAreaRef} required={true} className='form-control' name='tweet'>
 
-                </textarea>
-                <button type='submit' className='btn btn-primary my-3'>Tweet</button>
-            </form>
-            </div>
-        <TweetsList newTweets={newTweets} />
-    </div>
+              </textarea>
+              <button type='submit' className='btn btn-primary my-3'>Tweet</button>
+          </form>
+          </div>
+      <TweetsList newTweets={newTweets} />
+  </div>
 }
 
 export function TweetsList(props) {
