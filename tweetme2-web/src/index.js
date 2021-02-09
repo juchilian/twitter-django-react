@@ -18,7 +18,7 @@ if (tweetsEl) {
 const tweetDetailElements = document.querySelectorAll(".tweetme-2-detail")
 
 tweetDetailElements.forEach(container=>{
-  ReactDOM.render(e(TweetDetailComponent, container.dataset), container);
+  ReactDOM.render(e(TweetDetailComponent, container.dataset), container)
 })
 
 // If you want your app to work offline and load faster, you can change
