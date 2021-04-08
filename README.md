@@ -16,7 +16,8 @@
 Like, Unlike機能
 
 
-#環境設定
+# 環境設定
+
 ## 始め方
 場所 デフォルト  
  `.env_django/Scripts/activate`
