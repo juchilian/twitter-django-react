@@ -1,7 +1,7 @@
 # twitter-django-react
 
 # 技術スタック
-フロントエンド HTML, CSS, JS 
+フロントエンド HTML, CSS, JS  
 使用フレームワーク Bootstrap, React  
 バックエンド Python  
 使用フレームワーク Django(django-rest-framework使用)  
